@@ -1,11 +1,30 @@
 class Car
+  attr_accessor :owner, :mechanic
+  attr_reader :make, :model, :classification
 
-  attr_reader :make, :model
+  @@all = []
 
-  def initialize(make, model, classification)
-    @make = make
+  def initialize(model, owner, classification)
     @model = model
+    @owner = owner
     @classification = classification
+    @@all << self
   end
 
-end
+  def self.all
+    @@all
+  end
+
+  def self.classifications
+    self.all.map do |car|
+      car.classification
+    end.uniq
+  end
+
+  def mechanic
+    Mechanic.all.select do |mechanic|
+      mechanic.specialty == self.classification
+    end
+  end
+
+end #END CLASS
