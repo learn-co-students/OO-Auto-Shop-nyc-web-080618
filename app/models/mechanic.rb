@@ -16,7 +16,7 @@ class Mechanic
 
   def my_cars
     Car.all.select do |car|
-      car.classification == self.specialty
+      car.mechanic == self
     end
   end
 

@@ -21,7 +21,7 @@ class CarOwner
 
   def my_mechanics
     my_cars.map do |car|
-      car.my_mechanics
+      car.mechanic
     end
   end
 
