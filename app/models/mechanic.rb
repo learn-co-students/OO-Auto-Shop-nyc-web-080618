@@ -7,7 +7,7 @@ class Mechanic
   def initialize(name, specialty)
     @name = name
     @specialty = specialty
-    @all << self
+    @@all << self
   end
 
   def self.all
