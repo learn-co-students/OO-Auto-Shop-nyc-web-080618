@@ -14,22 +14,17 @@ class Car
     @@all
   end
 
-  def self.all_classifications
-    arr = []
-    Car.all.each do |car|
-      arr << car.classification
-    end
-    arr.uniq
+def self.list_of_all_car_classification
+all_cars  = self.all.map do |car|
+    car.classification
   end
-
-  def mechanics
-    arr = []
-    Mechanic.all.each do |mechanic|
-    if mechanic.specialty.include?(self.classification)
-      arr << mechanic
-    end
-    end
-  arr.uniq
+  all_cars.uniq
 end
 
+def self.list_of_mechanics
+  Mechanic.all.select do |mechanic|
+  self.list_of_all_car_classification.include?(mechanic.specialty)
 end
+end
+
+end #end of code

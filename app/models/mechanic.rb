@@ -12,23 +12,23 @@ def self.all
   @@all
 end
 
-def cars_fixed
+def list_of_cars
   Car.all.select do |car|
-  self.specialty.include?(car.classification)
+  car.classification == self.specialty
+ end
+end
+
+
+def list_of_owners
+  CarOwner.all.select do |car_owner|
+    !(car_owner.cars & list_of_cars).empty?
   end
 end
 
-def car_owner
-  CarOwner.all.select do |owner|
-    !(owner.cars & self.cars_fixed).empty?
+def list_of_owners_name
+  list_of_owners.map do |owner|
+    owner.name
   end
 end
 
-def car_owner_name
-  arr = []
-  car_owner.each do |owner|
-    arr << owner.name
-  end
-  arr
-end
-end
+end #end
